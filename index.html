@@ -1,0 +1,1114 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="Баня Горьгоко — аренда бани, квартир и коттеджов. Онлайн-каталог, цены, бронирование, контакты." />
+  <title>Баня Горьгоко — аренда квартир и коттеджов</title>
+
+  <style>
+    :root{
+      --yellow:#F6C343;   /* как парилка */
+      --green:#22C55E;    /* как веник */
+      --bg:#07130f;
+      --panel:#0B1A14;
+      --panel2:#0E2119;
+      --text:#EAF7F0;
+      --muted:#B9D5C7;
+      --line:rgba(255,255,255,.10);
+      --shadow: 0 18px 55px rgba(0,0,0,.35);
+      --radius: 18px;
+      --radius2: 26px;
+      --max: 1160px;
+      --ring: 0 0 0 4px rgba(246,195,67,.22);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(1200px 700px at 20% -10%, rgba(246,195,67,.18), transparent 60%),
+        radial-gradient(900px 600px at 90% 20%, rgba(34,197,94,.16), transparent 60%),
+        linear-gradient(180deg, #06110d 0%, #07130f 55%, #06110d 100%);
+      overflow-x:hidden;
+    }
+    a{color:inherit; text-decoration:none}
+    .container{max-width:var(--max); margin:0 auto; padding:0 18px}
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      gap:10px;
+      border:1px solid var(--line);
+      color:var(--text);
+      background:rgba(255,255,255,.06);
+      padding:12px 14px;
+      border-radius:14px;
+      cursor:pointer;
+      transition:transform .15s ease, background .15s ease, border-color .15s ease;
+      user-select:none;
+      font-weight:650;
+    }
+    .btn:hover{transform:translateY(-1px); background:rgba(255,255,255,.09)}
+    .btn:focus{outline:none; box-shadow:var(--ring)}
+    .btn.primary{
+      border-color: rgba(246,195,67,.45);
+      background: linear-gradient(135deg, rgba(246,195,67,.95), rgba(34,197,94,.55));
+      color:#06110d;
+      box-shadow: 0 16px 45px rgba(246,195,67,.10);
+    }
+    .btn.primary:hover{
+      background: linear-gradient(135deg, rgba(246,195,67,1), rgba(34,197,94,.70));
+    }
+    .chip{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:8px 10px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background: rgba(0,0,0,.14);
+      color: var(--muted);
+      font-weight:650;
+      font-size:13px;
+    }
+    .chip b{color:var(--text)}
+    .topbar{
+      position:sticky; top:0; z-index:50;
+      background: rgba(7,19,15,.62);
+      backdrop-filter: blur(12px);
+      border-bottom:1px solid var(--line);
+    }
+    .topbar-inner{
+      display:flex; align-items:center; justify-content:space-between;
+      padding:12px 0;
+      gap:14px;
+    }
+    .brand{
+      display:flex; align-items:center; gap:12px;
+      min-width: 220px;
+    }
+    .brand-name{
+      display:flex; flex-direction:column; line-height:1.05;
+    }
+    .brand-name .title{font-weight:900; letter-spacing:.2px}
+    .brand-name .sub{color:var(--muted); font-weight:650; font-size:12px}
+    nav{
+      display:flex; gap:8px; flex-wrap:wrap;
+      justify-content:flex-end;
+    }
+    nav a{
+      padding:10px 12px;
+      border-radius:12px;
+      border:1px solid transparent;
+      color:var(--muted);
+      font-weight:750;
+      font-size:14px;
+      transition:.15s ease;
+    }
+    nav a:hover{
+      color:var(--text);
+      border-color:var(--line);
+      background: rgba(255,255,255,.06);
+    }
+
+    /* HERO */
+    .hero{
+      position:relative;
+      padding: 46px 0 26px;
+      overflow:hidden;
+    }
+    .hero-bg{
+      position:absolute; inset:-40px;
+      background-image: url("assets/img/bg-1.webp");
+      background-size:cover;
+      background-position:center;
+      filter: blur(10px) brightness(.55) saturate(1.05);
+      transform: scale(1.08);
+      z-index:0;
+    }
+    .hero-overlay{
+      position:absolute; inset:0;
+      background:
+        radial-gradient(900px 520px at 10% 10%, rgba(246,195,67,.25), transparent 60%),
+        radial-gradient(900px 520px at 90% 20%, rgba(34,197,94,.22), transparent 60%),
+        linear-gradient(180deg, rgba(7,19,15,.35), rgba(7,19,15,.88));
+      z-index:1;
+    }
+    .hero-inner{
+      position:relative; z-index:2;
+      display:grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap:18px;
+      align-items:stretch;
+      padding: 10px 0 18px;
+    }
+    .hero-card{
+      background: rgba(11,26,20,.78);
+      border:1px solid var(--line);
+      border-radius: var(--radius2);
+      box-shadow: var(--shadow);
+      padding: 18px;
+      overflow:hidden;
+      position:relative;
+    }
+    .hero-card::before{
+      content:"";
+      position:absolute; inset:-2px;
+      background: linear-gradient(135deg, rgba(246,195,67,.18), rgba(34,197,94,.16));
+      opacity:.55;
+      filter: blur(30px);
+      z-index:0;
+    }
+    .hero-card > *{position:relative; z-index:1}
+    .hero h1{
+      margin: 0 0 10px;
+      font-size: clamp(26px, 3.2vw, 44px);
+      line-height:1.05;
+      letter-spacing: .1px;
+    }
+    .hero p{
+      margin: 0 0 14px;
+      color: var(--muted);
+      font-weight: 650;
+      line-height:1.5;
+    }
+    .hero-actions{
+      display:flex; gap:10px; flex-wrap:wrap;
+      margin-top: 14px;
+    }
+    .stats{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:10px;
+      margin-top: 16px;
+    }
+    .stat{
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.05);
+      border-radius: 16px;
+      padding: 10px 12px;
+    }
+    .stat .n{font-size:18px; font-weight:900}
+    .stat .t{font-size:12px; color:var(--muted); font-weight:700}
+    .hero-side{
+      display:grid; gap:12px;
+    }
+    .side-block{
+      border:1px solid var(--line);
+      background: rgba(11,26,20,.70);
+      border-radius: var(--radius2);
+      padding: 14px;
+      box-shadow: var(--shadow);
+    }
+    .side-title{
+      display:flex; align-items:center; justify-content:space-between;
+      gap:10px;
+      margin-bottom:10px;
+    }
+    .side-title h3{margin:0; font-size:16px}
+    .contact-list{
+      display:grid;
+      gap:8px;
+      margin-top:10px;
+    }
+    .contact-item{
+      display:flex; align-items:center; justify-content:space-between; gap:10px;
+      padding:10px 12px;
+      border:1px solid var(--line);
+      border-radius: 14px;
+      background: rgba(255,255,255,.05);
+    }
+    .contact-item span{color:var(--muted); font-weight:700; font-size:13px}
+    .contact-item a{
+      color: var(--text);
+      font-weight:800;
+      text-decoration:underline;
+      text-decoration-color: rgba(246,195,67,.55);
+      text-underline-offset: 3px;
+    }
+
+    /* SECTION */
+    section{padding: 26px 0}
+    .section-head{
+      display:flex; align-items:flex-end; justify-content:space-between; gap:12px;
+      margin-bottom: 14px;
+    }
+    .section-head h2{
+      margin:0;
+      font-size: clamp(18px, 2.2vw, 26px);
+      letter-spacing:.1px;
+    }
+    .section-head p{
+      margin:0;
+      color:var(--muted);
+      font-weight:650;
+    }
+    .panel{
+      border:1px solid var(--line);
+      background: rgba(11,26,20,.72);
+      border-radius: var(--radius2);
+      padding: 14px;
+      box-shadow: var(--shadow);
+    }
+
+    /* FILTERS */
+    .filters{
+      display:flex; gap:8px; flex-wrap:wrap;
+      align-items:center;
+      justify-content:flex-start;
+    }
+    .fbtn{
+      padding:10px 12px;
+      border-radius: 999px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.05);
+      color: var(--muted);
+      font-weight:800;
+      cursor:pointer;
+      transition:.15s ease;
+    }
+    .fbtn:hover{transform:translateY(-1px); color:var(--text); background: rgba(255,255,255,.08)}
+    .fbtn.active{
+      color:#06110d;
+      border-color: rgba(246,195,67,.45);
+      background: linear-gradient(135deg, rgba(246,195,67,.95), rgba(34,197,94,.55));
+    }
+
+    /* CARDS */
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:12px;
+      margin-top: 12px;
+    }
+    .card{
+      border:1px solid var(--line);
+      background: rgba(14,33,25,.72);
+      border-radius: var(--radius2);
+      overflow:hidden;
+      box-shadow: var(--shadow);
+      display:flex;
+      flex-direction:column;
+      min-height: 100%;
+    }
+    .card .img{
+      height: 175px;
+      background: linear-gradient(135deg, rgba(246,195,67,.18), rgba(34,197,94,.12));
+      position:relative;
+      overflow:hidden;
+    }
+    .card .img img{
+      width:100%; height:100%;
+      object-fit: cover;
+      display:block;
+      filter: saturate(1.05) contrast(1.02);
+    }
+    .card .img::after{
+      content:"";
+      position:absolute; inset:0;
+      background: linear-gradient(180deg, transparent 35%, rgba(7,19,15,.88));
+    }
+    .card .body{padding: 12px 12px 14px}
+    .card h3{margin:0 0 6px; font-size:16px}
+    .meta{
+      display:flex; gap:8px; flex-wrap:wrap;
+      margin: 10px 0 12px;
+    }
+    .meta .chip{font-size:12px}
+    .card p{margin:0; color:var(--muted); font-weight:650; line-height:1.45}
+    .card .actions{
+      display:flex; gap:10px; flex-wrap:wrap;
+      margin-top: 12px;
+    }
+    .card .actions .btn{flex:1}
+    .card .price{
+      display:flex; align-items:baseline; justify-content:space-between; gap:10px;
+      margin-top:10px;
+      padding-top:10px;
+      border-top:1px solid var(--line);
+    }
+    .rub{font-weight:900; font-size:18px}
+    .per{color:var(--muted); font-weight:700; font-size:13px}
+
+    /* REVIEWS */
+    .reviews{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:12px;
+      margin-top: 12px;
+    }
+    .review{
+      border:1px solid var(--line);
+      background: rgba(14,33,25,.72);
+      border-radius: var(--radius2);
+      padding: 14px;
+      box-shadow: var(--shadow);
+    }
+    .stars{letter-spacing:1px; color: var(--yellow); font-weight:900}
+    .review .who{margin-top:10px; color:var(--muted); font-weight:750}
+
+    /* FOOTER */
+    footer{
+      padding: 26px 0;
+      border-top:1px solid var(--line);
+      background: rgba(0,0,0,.12);
+    }
+    .foot{
+      display:flex; flex-wrap:wrap; gap:12px;
+      align-items:center; justify-content:space-between;
+    }
+    .hint{
+      color: var(--muted);
+      font-weight:650;
+      font-size:13px;
+    }
+
+    /* MODAL */
+    .modal-backdrop{
+      position:fixed; inset:0;
+      background: rgba(0,0,0,.62);
+      display:none;
+      align-items:center;
+      justify-content:center;
+      z-index:100;
+      padding:18px;
+    }
+    .modal{
+      width:min(640px, 100%);
+      border:1px solid var(--line);
+      background: rgba(11,26,20,.92);
+      border-radius: 24px;
+      box-shadow: 0 24px 80px rgba(0,0,0,.55);
+      overflow:hidden;
+    }
+    .modal-head{
+      display:flex; align-items:center; justify-content:space-between; gap:12px;
+      padding: 14px 14px;
+      border-bottom:1px solid var(--line);
+      background: linear-gradient(135deg, rgba(246,195,67,.12), rgba(34,197,94,.10));
+    }
+    .modal-head h3{margin:0; font-size:16px}
+    .xbtn{
+      width:38px; height:38px;
+      border-radius: 12px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.06);
+      color: var(--text);
+      cursor:pointer;
+      font-weight:900;
+    }
+    .modal-body{padding: 14px}
+    .form{
+      display:grid; gap:10px;
+    }
+    .row{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:10px;
+    }
+    label{
+      display:grid; gap:6px;
+      font-weight:800;
+      color: var(--text);
+      font-size: 13px;
+    }
+    input, select, textarea{
+      width:100%;
+      padding: 12px 12px;
+      border-radius: 14px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.05);
+      color: var(--text);
+      font-weight:650;
+      outline:none;
+    }
+    textarea{min-height: 90px; resize: vertical}
+    input:focus,select:focus,textarea:focus{box-shadow: var(--ring); border-color: rgba(246,195,67,.35)}
+    .modal-actions{
+      display:flex; gap:10px; flex-wrap:wrap;
+      padding: 0 14px 14px;
+    }
+    .toast{
+      margin-top: 10px;
+      padding: 10px 12px;
+      border-radius: 14px;
+      border:1px solid rgba(34,197,94,.30);
+      background: rgba(34,197,94,.10);
+      color: #D9FFE8;
+      font-weight:750;
+      display:none;
+    }
+
+    /* DEBUG (если что-то сломается — покажет ошибку внизу) */
+    #debug{
+      position:fixed; left:12px; right:12px; bottom:12px;
+      display:none;
+      padding:10px 12px;
+      border-radius:14px;
+      border:1px solid rgba(255,80,80,.35);
+      background: rgba(120,20,20,.45);
+      color: #FFF1F1;
+      font-weight:750;
+      z-index:999;
+      box-shadow: var(--shadow);
+    }
+
+    @media (max-width: 980px){
+      .hero-inner{grid-template-columns: 1fr; }
+      .grid{grid-template-columns: repeat(2, 1fr)}
+      .reviews{grid-template-columns: repeat(2, 1fr)}
+    }
+    @media (max-width: 640px){
+      nav{display:none}
+      .grid{grid-template-columns: 1fr}
+      .reviews{grid-template-columns: 1fr}
+      .row{grid-template-columns: 1fr}
+      .brand{min-width:auto}
+    }
+  </style>
+</head>
+
+<body>
+  <div class="topbar">
+    <div class="container">
+      <div class="topbar-inner">
+        <div class="brand" aria-label="Логотип и название">
+          <!-- ЛОГО (SVG, без data-uri, чтобы не было ошибок) -->
+          <svg width="46" height="46" viewBox="0 0 64 64" role="img" aria-label="Баня Горьгоко">
+            <defs>
+              <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#F6C343"/>
+                <stop offset="1" stop-color="#22C55E"/>
+              </linearGradient>
+            </defs>
+            <rect x="6" y="6" width="52" height="52" rx="16" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.14)"/>
+            <!-- steam -->
+            <path d="M23 38c0-6 8-5 8-12 0-3-2-5-2-5" fill="none" stroke="url(#g1)" stroke-width="3.2" stroke-linecap="round"/>
+            <path d="M31 42c0-6 10-5 10-13 0-3-2-5-2-5" fill="none" stroke="url(#g1)" stroke-width="3.2" stroke-linecap="round" opacity=".95"/>
+            <!-- whisk -->
+            <path d="M41 44c5-7 9-8 11-7-2 3-3 8-10 13" fill="none" stroke="rgba(246,195,67,.95)" stroke-width="3.2" stroke-linecap="round"/>
+            <path d="M39 45c6-8 10-10 13-9-2 4-3 10-12 16" fill="none" stroke="rgba(34,197,94,.9)" stroke-width="2.6" stroke-linecap="round" opacity=".95"/>
+          </svg>
+
+          <div class="brand-name">
+            <div class="title">Баня Горьгоко</div>
+            <div class="sub">Аренда бани • квартир • коттеджов</div>
+          </div>
+        </div>
+
+        <nav aria-label="Навигация">
+          <a href="#catalog">Каталог</a>
+          <a href="#reviews">Отзывы</a>
+          <a href="#contacts">Контакты</a>
+        </nav>
+
+        <div style="display:flex; gap:10px; align-items:center;">
+          <button class="btn primary" id="openBookingTop">Забронировать</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <header class="hero" id="top">
+    <div class="hero-bg" id="heroBg"></div>
+    <div class="hero-overlay"></div>
+
+    <div class="container">
+      <div class="hero-inner">
+        <div class="hero-card">
+          <div class="chip">🌿 <b>Жёлтый</b> + <b>зелёный</b> дизайн</div>
+          <h1>Аренда бани, квартир и коттеджов — красиво, удобно, быстро</h1>
+          <p>
+            Выбирай вариант в каталоге, смотри фото, цену, вместимость и комнаты.
+            Для брони — телефон, мессенджеры или форма на сайте.
+          </p>
+
+          <div class="hero-actions">
+            <a class="btn primary" href="#catalog">Открыть каталог</a>
+            <button class="btn" id="openBookingHero">Быстрое бронирование</button>
+            <a class="btn" href="#contacts">Связаться</a>
+          </div>
+
+          <div class="stats" aria-label="Преимущества">
+            <div class="stat">
+              <div class="n">24/7</div>
+              <div class="t">на связи</div>
+            </div>
+            <div class="stat">
+              <div class="n">Фото</div>
+              <div class="t">в каждом объекте</div>
+            </div>
+            <div class="stat">
+              <div class="n">Честно</div>
+              <div class="t">без “сказок”</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-side">
+          <div class="side-block" id="contacts">
+            <div class="side-title">
+              <h3>Контакты</h3>
+              <span class="chip">⚡ быстро отвечаем</span>
+            </div>
+
+            <div class="contact-list">
+              <div class="contact-item">
+                <span>Телефон</span>
+                <a href="tel:+79991234567">+7 (999) 123-45-67</a>
+              </div>
+              <div class="contact-item">
+                <span>WhatsApp</span>
+                <a href="https://wa.me/79991234567" target="_blank" rel="noopener">wa.me/79991234567</a>
+              </div>
+              <div class="contact-item">
+                <span>Telegram</span>
+                <a href="https://t.me/your_telegram" target="_blank" rel="noopener">@your_telegram</a>
+              </div>
+              <div class="contact-item">
+                <span>ВКонтакте</span>
+                <a href="https://vk.com/your_vk" target="_blank" rel="noopener">vk.com/your_vk</a>
+              </div>
+              <div class="contact-item">
+                <span>Почта</span>
+                <a href="mailto:info@banya-gorkogo.ru">info@banya-gorkogo.ru</a>
+              </div>
+            </div>
+
+            <p class="hint" style="margin:10px 0 0;">
+              Подсказка: замените контакты на свои — просто отредактируйте ссылки в коде.
+            </p>
+          </div>
+
+          <div class="side-block">
+            <div class="side-title">
+              <h3>Как это работает</h3>
+              <span class="chip">✅ 3 шага</span>
+            </div>
+            <div class="hint" style="line-height:1.55;">
+              1) Выберите объект в каталоге.<br>
+              2) Нажмите “Забронировать”.<br>
+              3) Подтвердим в мессенджере / по телефону.
+            </div>
+            <div style="margin-top:12px; display:flex; gap:10px; flex-wrap:wrap;">
+              <button class="btn primary" id="openBookingSide">Забронировать</button>
+              <a class="btn" href="#reviews">Смотреть отзывы</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Быстрые ссылки -->
+      <div class="panel" style="display:flex; gap:10px; flex-wrap:wrap; align-items:center; justify-content:space-between;">
+        <div class="filters" aria-label="Фильтр каталога">
+          <button class="fbtn active" data-filter="all">Все</button>
+          <button class="fbtn" data-filter="sauna">Бани</button>
+          <button class="fbtn" data-filter="apt">Квартиры</button>
+          <button class="fbtn" data-filter="cottage">Коттеджи</button>
+        </div>
+        <div class="hint">Фон можно менять: <b>bg-1.webp / bg-2.webp / bg-3.webp</b></div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section id="catalog">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2>Каталог</h2>
+            <p>Фото, цена, люди, комнаты — всё понятно.</p>
+          </div>
+          <button class="btn primary" id="openBookingCatalog">Забронировать</button>
+        </div>
+
+        <div class="grid" id="cards"></div>
+
+        <div class="panel" style="margin-top:12px;">
+          <div class="hint">
+            Если фото не отображаются: убедись, что файлы лежат именно тут → <b>assets/img/</b> и имена совпадают один в один.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="reviews">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2>Отзывы</h2>
+            <p>Честные: есть и отличные, и с замечаниями.</p>
+          </div>
+          <a class="btn" href="#contacts">Оставить отзыв</a>
+        </div>
+
+        <div class="reviews">
+          <div class="review">
+            <div class="stars">★★★★★</div>
+            <div style="margin-top:8px; font-weight:750;">
+              Баня очень тёплая, парилка понравилась, зона отдыха уютная. Быстро договорились в WhatsApp.
+            </div>
+            <div class="who">— Анна, аренда бани</div>
+          </div>
+
+          <div class="review">
+            <div class="stars">★★★★☆</div>
+            <div style="margin-top:8px; font-weight:750;">
+              Квартира чистая, всё как на фото. Минус — во дворе вечером сложно с парковкой, но в целом ок.
+            </div>
+            <div class="who">— Илья, аренда квартиры</div>
+          </div>
+
+          <div class="review">
+            <div class="stars">★★★★★</div>
+            <div style="margin-top:8px; font-weight:750;">
+              Коттедж большой, компании хватило места. Терраса топ. По брони всё чётко, без сюрпризов.
+            </div>
+            <div class="who">— Марина, аренда коттеджа</div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="foot">
+        <div class="hint">
+          © <span id="year"></span> <b>Баня Горьгоко</b> — аренда бани, квартир и коттеджов
+        </div>
+        <div style="display:flex; gap:10px; flex-wrap:wrap;">
+          <a class="btn" href="#top">Наверх</a>
+          <button class="btn primary" id="openBookingFooter">Забронировать</button>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- MODAL -->
+  <div class="modal-backdrop" id="modalBackdrop" role="dialog" aria-modal="true" aria-label="Бронирование">
+    <div class="modal">
+      <div class="modal-head">
+        <h3>Бронирование</h3>
+        <button class="xbtn" id="closeModal" aria-label="Закрыть">✕</button>
+      </div>
+
+      <div class="modal-body">
+        <form class="form" id="bookingForm">
+          <div class="row">
+            <label>
+              Имя
+              <input name="name" autocomplete="name" placeholder="Например: Савва" required />
+            </label>
+            <label>
+              Телефон
+              <input name="phone" autocomplete="tel" placeholder="+7..." required />
+            </label>
+          </div>
+
+          <div class="row">
+            <label>
+              Категория
+              <select name="category" id="bkCategory">
+                <option value="Баня">Баня</option>
+                <option value="Квартира">Квартира</option>
+                <option value="Коттедж">Коттедж</option>
+              </select>
+            </label>
+            <label>
+              Объект
+              <select name="item" id="bkItem"></select>
+            </label>
+          </div>
+
+          <div class="row">
+            <label>
+              Дата заезда
+              <input type="date" name="dateIn" required />
+            </label>
+            <label>
+              Дата выезда
+              <input type="date" name="dateOut" required />
+            </label>
+          </div>
+
+          <label>
+            Комментарий (необязательно)
+            <textarea name="note" placeholder="Например: нужна баня с чаном, заселение после 16:00"></textarea>
+          </label>
+
+          <div class="toast" id="toast">Заявка сформирована. Ниже появится кнопка “Отправить”.</div>
+        </form>
+      </div>
+
+      <div class="modal-actions">
+        <button class="btn primary" id="submitBooking">Сформировать заявку</button>
+        <a class="btn" id="sendWhatsApp" target="_blank" rel="noopener" style="display:none;">Отправить в WhatsApp</a>
+        <a class="btn" id="sendTelegram" target="_blank" rel="noopener" style="display:none;">Отправить в Telegram</a>
+        <a class="btn" id="sendEmail" style="display:none;">Отправить на почту</a>
+      </div>
+    </div>
+  </div>
+
+  <div id="debug"></div>
+
+  <script>
+    // ====== SAFE DEBUG ======
+    (function(){
+      const debug = document.getElementById('debug');
+      window.addEventListener('error', (e) => {
+        debug.style.display = 'block';
+        debug.textContent = 'Ошибка на странице: ' + (e?.message || 'неизвестно');
+      });
+    })();
+
+    // ====== DATA ======
+    const LISTINGS = [
+      // БАНИ
+      {
+        id: "sauna-1",
+        type: "sauna",
+        title: "Баня у леса",
+        img: "assets/img/sauna-exterior-1.webp",
+        price: 4500,
+        unit: "за вечер",
+        people: "до 6",
+        rooms: "зона отдыха + парилка",
+        features: ["Парилка", "Зона отдыха", "Душ"],
+        text: "Уютная баня в тёплом дереве. Хорошо для небольшой компании."
+      },
+      {
+        id: "sauna-2",
+        type: "sauna",
+        title: "Баня премиум",
+        img: "assets/img/sauna-lounge-2.webp",
+        price: 6500,
+        unit: "за вечер",
+        people: "до 10",
+        rooms: "2 зоны + парилка",
+        features: ["Парилка", "Большая комната", "Чайная зона"],
+        text: "Больше места, красивый интерьер, удобно отдыхать компанией."
+      },
+      {
+        id: "sauna-3",
+        type: "sauna",
+        title: "Баня с чаном",
+        img: "assets/img/sauna-extra-1.webp",
+        price: 8000,
+        unit: "за вечер",
+        people: "до 8",
+        rooms: "баня + чан",
+        features: ["Чан", "Территория", "Лес рядом"],
+        text: "Самый атмосферный вариант: чан на улице + баня."
+      },
+
+      // КВАРТИРЫ
+      {
+        id: "apt-1",
+        type: "apt",
+        title: "Квартира — уютная гостиная",
+        img: "assets/img/apt-living-1.webp",
+        price: 2500,
+        unit: "за сутки",
+        people: "до 3",
+        rooms: "1 комната",
+        features: ["Wi-Fi", "TV", "Чисто"],
+        text: "Удобно для поездки или командировки. Всё базовое есть."
+      },
+      {
+        id: "apt-2",
+        type: "apt",
+        title: "Квартира — спальня комфорт",
+        img: "assets/img/apt-bedroom-2.webp",
+        price: 3200,
+        unit: "за сутки",
+        people: "до 4",
+        rooms: "2 комнаты",
+        features: ["Двуспальная кровать", "Шторы blackout", "Чай/кофе"],
+        text: "Спокойный интерьер, комфортный сон, аккуратная обстановка."
+      },
+      {
+        id: "apt-3",
+        type: "apt",
+        title: "Квартира — кухня светлая",
+        img: "assets/img/apt-kitchen-1.webp",
+        price: 2900,
+        unit: "за сутки",
+        people: "до 4",
+        rooms: "2 комнаты",
+        features: ["Кухня", "Плита", "Посуда"],
+        text: "Светлая кухня, удобно готовить, подходит для семьи."
+      },
+
+      // КОТТЕДЖИ
+      {
+        id: "cot-1",
+        type: "cottage",
+        title: "Коттедж в лесу",
+        img: "assets/img/cottage-exterior-1.webp",
+        price: 12000,
+        unit: "за сутки",
+        people: "до 10",
+        rooms: "3 комнаты",
+        features: ["Большой дом", "Камин", "Природа"],
+        text: "Отдых на природе, много пространства, отлично на выходные."
+      },
+      {
+        id: "cot-2",
+        type: "cottage",
+        title: "Коттедж — гостиная с камином",
+        img: "assets/img/cottage-living-1.webp",
+        price: 15000,
+        unit: "за сутки",
+        people: "до 12",
+        rooms: "4 комнаты",
+        features: ["Камин", "Большая гостиная", "Панорамные окна"],
+        text: "Для большой компании: гостиная, камин, много света."
+      },
+      {
+        id: "cot-3",
+        type: "cottage",
+        title: "Коттедж — терраса",
+        img: "assets/img/cottage-terrace-2.webp",
+        price: 14000,
+        unit: "за сутки",
+        people: "до 12",
+        rooms: "4 комнаты",
+        features: ["Терраса", "Зона BBQ", "Уют"],
+        text: "Терраса и двор — кайф для отдыха. Хорошо летом и осенью."
+      },
+    ];
+
+    const TYPE_LABEL = { sauna: "Баня", apt: "Квартира", cottage: "Коттедж" };
+
+    // ====== UI HELPERS ======
+    function rub(n){
+      return new Intl.NumberFormat("ru-RU").format(n) + " ₽";
+    }
+
+    function el(tag, attrs={}, children=[]){
+      const node = document.createElement(tag);
+      for(const [k,v] of Object.entries(attrs)){
+        if(k === "class") node.className = v;
+        else if(k === "html") node.innerHTML = v;
+        else if(k.startsWith("on") && typeof v === "function") node.addEventListener(k.slice(2), v);
+        else node.setAttribute(k, v);
+      }
+      for(const ch of children) node.appendChild(typeof ch === "string" ? document.createTextNode(ch) : ch);
+      return node;
+    }
+
+    function cardTemplate(item){
+      const chips = [
+        `<span class="chip">🏷️ <b>${TYPE_LABEL[item.type]}</b></span>`,
+        `<span class="chip">👥 <b>${item.people}</b></span>`,
+        `<span class="chip">🚪 <b>${item.rooms}</b></span>`
+      ].join("");
+
+      const img = el("img", {
+        src: item.img,
+        alt: item.title,
+        loading: "lazy",
+        onerror: (e) => {
+          // Если не нашло картинку — просто спрячем img, фон-градент останется
+          e.target.style.display = "none";
+        }
+      });
+
+      const imgWrap = el("div", { class:"img" }, [img]);
+      const title = el("h3", {}, [item.title]);
+      const meta = el("div", { class:"meta", html: chips });
+      const desc = el("p", {}, [item.text]);
+
+      const price = el("div", { class:"price" }, [
+        el("div", { class:"rub" }, [rub(item.price)]),
+        el("div", { class:"per" }, [item.unit])
+      ]);
+
+      const btnBook = el("button", {
+        class:"btn primary",
+        onClick: () => openBookingFor(item)
+      }, ["Забронировать"]);
+
+      const btnContact = el("a", {
+        class:"btn",
+        href: "#contacts"
+      }, ["Связаться"]);
+
+      const actions = el("div", { class:"actions" }, [btnBook, btnContact]);
+
+      const body = el("div", { class:"body" }, [title, meta, desc, price, actions]);
+
+      return el("article", { class:"card", "data-type": item.type }, [imgWrap, body]);
+    }
+
+    // ====== CATALOG RENDER ======
+    const cardsRoot = document.getElementById("cards");
+    function render(filter="all"){
+      cardsRoot.innerHTML = "";
+      const list = LISTINGS.filter(x => filter === "all" ? true : x.type === filter);
+      for(const item of list){
+        cardsRoot.appendChild(cardTemplate(item));
+      }
+    }
+
+    // ====== FILTERS ======
+    function setActiveFilter(btn){
+      document.querySelectorAll(".fbtn").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+    }
+
+    document.querySelectorAll(".fbtn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const f = btn.getAttribute("data-filter");
+        setActiveFilter(btn);
+        render(f);
+      });
+    });
+
+    // ====== HERO BG rotate (optional) ======
+    const heroBg = document.getElementById("heroBg");
+    const bgList = ["assets/img/bg-1.webp","assets/img/bg-2.webp","assets/img/bg-3.webp"];
+    // если какого-то файла нет — просто останется предыдущий
+    let bgIdx = 0;
+    function trySetBg(src){
+      const test = new Image();
+      test.onload = () => heroBg.style.backgroundImage = `url("${src}")`;
+      test.onerror = () => {};
+      test.src = src;
+    }
+    trySetBg(bgList[0]);
+    // мягкая смена каждые ~12 секунд (можно удалить, если не нужно)
+    setInterval(() => {
+      bgIdx = (bgIdx + 1) % bgList.length;
+      trySetBg(bgList[bgIdx]);
+    }, 12000);
+
+    // ====== MODAL BOOKING ======
+    const modalBackdrop = document.getElementById("modalBackdrop");
+    const closeModalBtn = document.getElementById("closeModal");
+    const toast = document.getElementById("toast");
+
+    const bkCategory = document.getElementById("bkCategory");
+    const bkItem = document.getElementById("bkItem");
+
+    const sendWhatsApp = document.getElementById("sendWhatsApp");
+    const sendTelegram = document.getElementById("sendTelegram");
+    const sendEmail = document.getElementById("sendEmail");
+
+    function openModal(){
+      toast.style.display = "none";
+      sendWhatsApp.style.display = "none";
+      sendTelegram.style.display = "none";
+      sendEmail.style.display = "none";
+      modalBackdrop.style.display = "flex";
+      document.body.style.overflow = "hidden";
+    }
+    function closeModal(){
+      modalBackdrop.style.display = "none";
+      document.body.style.overflow = "";
+    }
+
+    function fillItemsByCategory(label){
+      bkItem.innerHTML = "";
+      const type =
+        label === "Баня" ? "sauna" :
+        label === "Квартира" ? "apt" : "cottage";
+      const list = LISTINGS.filter(x => x.type === type);
+      for(const x of list){
+        const opt = document.createElement("option");
+        opt.value = x.title;
+        opt.textContent = x.title;
+        bkItem.appendChild(opt);
+      }
+    }
+
+    function openBookingFor(item){
+      openModal();
+      const label = TYPE_LABEL[item.type];
+      bkCategory.value = label;
+      fillItemsByCategory(label);
+      bkItem.value = item.title;
+    }
+
+    // Top buttons
+    ["openBookingTop","openBookingHero","openBookingSide","openBookingCatalog","openBookingFooter"].forEach(id=>{
+      const b = document.getElementById(id);
+      if(b) b.addEventListener("click", () => {
+        openModal();
+        fillItemsByCategory(bkCategory.value);
+      });
+    });
+
+    closeModalBtn.addEventListener("click", closeModal);
+    modalBackdrop.addEventListener("click", (e) => {
+      if(e.target === modalBackdrop) closeModal();
+    });
+    document.addEventListener("keydown", (e)=> {
+      if(e.key === "Escape") closeModal();
+    });
+
+    bkCategory.addEventListener("change", () => fillItemsByCategory(bkCategory.value));
+
+    // Form -> create message + links
+    const bookingForm = document.getElementById("bookingForm");
+    document.getElementById("submitBooking").addEventListener("click", (e) => {
+      e.preventDefault();
+
+      const fd = new FormData(bookingForm);
+      const name = (fd.get("name") || "").toString().trim();
+      const phone = (fd.get("phone") || "").toString().trim();
+      const category = (fd.get("category") || "").toString().trim();
+      const item = (fd.get("item") || "").toString().trim();
+      const dateIn = (fd.get("dateIn") || "").toString().trim();
+      const dateOut = (fd.get("dateOut") || "").toString().trim();
+      const note = (fd.get("note") || "").toString().trim();
+
+      if(!name || !phone || !dateIn || !dateOut){
+        toast.style.display = "block";
+        toast.textContent = "Заполни имя/телефон и даты (заезд/выезд).";
+        toast.style.borderColor = "rgba(255,80,80,.35)";
+        toast.style.background = "rgba(120,20,20,.45)";
+        return;
+      }
+
+      const msg =
+`Заявка на бронирование:
+Имя: ${name}
+Телефон: ${phone}
+Категория: ${category}
+Объект: ${item}
+Заезд: ${dateIn}
+Выезд: ${dateOut}
+Комментарий: ${note || "-"}
+`;
+
+      const encoded = encodeURIComponent(msg);
+
+      // WhatsApp (замени номер на свой, если нужно)
+      const waNumber = "79991234567";
+      sendWhatsApp.href = `https://wa.me/${waNumber}?text=${encoded}`;
+
+      // Telegram (универсально: откроется окно “поделиться”)
+      sendTelegram.href = `https://t.me/share/url?url=${encodeURIComponent(location.href)}&text=${encoded}`;
+
+      // Email
+      const email = "info@banya-gorkogo.ru";
+      sendEmail.href = `mailto:${email}?subject=${encodeURIComponent("Бронирование — Баня Горьгоко")}&body=${encoded}`;
+
+      toast.style.display = "block";
+      toast.textContent = "Готово! Выбери, куда отправить заявку:";
+      toast.style.borderColor = "rgba(34,197,94,.30)";
+      toast.style.background = "rgba(34,197,94,.10)";
+
+      sendWhatsApp.style.display = "inline-flex";
+      sendTelegram.style.display = "inline-flex";
+      sendEmail.style.display = "inline-flex";
+    });
+
+    // INIT
+    document.getElementById("year").textContent = new Date().getFullYear();
+    fillItemsByCategory(bkCategory.value);
+    render("all");
+  </script>
+</body>
+</html>
